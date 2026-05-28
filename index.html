@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive CSS Fire</title>
     <style>
-        /* CSS styling */
+    
         body {
             background-color: #111;
             display: flex;
@@ -18,7 +18,6 @@
             font-family: sans-serif;
         }
 
-        /* Added a cursor pointer so you know it is clickable */
         .fire-container {
             position: relative;
             width: 100px;
@@ -33,11 +32,9 @@
             transform: translateX(-50%) rotate(45deg);
             border-radius: 0 50% 50% 50%; 
             animation: flicker 1.2s infinite alternate ease-in-out;
-            /* Added a transition so the color changes smoothly */
             transition: background 0.5s, box-shadow 0.5s; 
         }
 
-        /* Default Orange Fire */
         .flame-outer {
             width: 80px;
             height: 80px;
@@ -62,7 +59,6 @@
             animation-duration: 1s;
         }
 
-        /* --- NEW: Blue Fire Classes (Triggered by JavaScript) --- */
         .blue-fire .flame-outer {
             background: rgba(0, 102, 255, 0.9);
             box-shadow: 0 0 30px #0066ff;
@@ -100,14 +96,10 @@
     <p>Click the fire to change its color!</p>
 
     <script>
-        // 1. We tell JS to find the HTML element with the ID 'myFire'
         const fireElement = document.getElementById('myFire');
 
-        // 2. We add an 'Event Listener' that waits for a mouse click on that element
         fireElement.addEventListener('click', function() {
             
-            // 3. When clicked, JS toggles the 'blue-fire' class on and off.
-            // This forces the CSS to apply the new blue colors we wrote above.
             fireElement.classList.toggle('blue-fire');
             
         });
