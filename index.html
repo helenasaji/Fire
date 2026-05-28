@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive CSS Fire</title>
+    <style>
+        /* CSS styling */
+        body {
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        /* Added a cursor pointer so you know it is clickable */
+        .fire-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            cursor: pointer; 
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            border-radius: 0 50% 50% 50%; 
+            animation: flicker 1.2s infinite alternate ease-in-out;
+            /* Added a transition so the color changes smoothly */
+            transition: background 0.5s, box-shadow 0.5s; 
+        }
+
+        /* Default Orange Fire */
+        .flame-outer {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 69, 0, 0.9);
+            box-shadow: 0 0 30px #ff4500;
+            animation-duration: 1.5s;
+        }
+
+        .flame-inner {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 165, 0, 0.9);
+            box-shadow: 0 0 20px #ffa500;
+            animation-duration: 1.2s;
+        }
+
+        .flame-core {
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 220, 0, 0.9);
+            box-shadow: 0 0 10px #ffdc00;
+            animation-duration: 1s;
+        }
+
+        /* --- NEW: Blue Fire Classes (Triggered by JavaScript) --- */
+        .blue-fire .flame-outer {
+            background: rgba(0, 102, 255, 0.9);
+            box-shadow: 0 0 30px #0066ff;
+        }
+
+        .blue-fire .flame-inner {
+            background: rgba(0, 204, 255, 0.9);
+            box-shadow: 0 0 20px #00ccff;
+        }
+
+        .blue-fire .flame-core {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px #ffffff;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) rotate(45deg) scale(1); }
+            50% { transform: translateX(-50%) rotate(46deg) scale(1.05) translateY(-2px); }
+            100% { transform: translateX(-50%) rotate(44deg) scale(1.1) translateY(-8px); }
+        }
+
+        p {
+            margin-top: 60px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="fire-container" id="myFire">
+        <div class="flame flame-outer"></div>
+        <div class="flame flame-inner"></div>
+        <div class="flame flame-core"></div>
+    </div>
+    
+    <p>Click the fire to change its color!</p>
+
+    <script>
+        // 1. We tell JS to find the HTML element with the ID 'myFire'
+        const fireElement = document.getElementById('myFire');
+
+        // 2. We add an 'Event Listener' that waits for a mouse click on that element
+        fireElement.addEventListener('click', function() {
+            
+            // 3. When clicked, JS toggles the 'blue-fire' class on and off.
+            // This forces the CSS to apply the new blue colors we wrote above.
+            fireElement.classList.toggle('blue-fire');
+            
+        });
+    </script>
+</body>
+</html>
